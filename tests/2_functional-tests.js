@@ -14,7 +14,7 @@ suite("Functional Tests", () => {
       .post("/api/translate")
       .send({
         locale: "british-to-american",
-        text: "Tea time is usually around 4 or 4.30.\n"
+        text: "Tea time is usually around 4 or 4.30."
       })
       .end(function(err, res) {
         assert.strictEqual(err, null);
@@ -23,11 +23,11 @@ suite("Functional Tests", () => {
         assert.property(res.body, "translation");
         assert.strictEqual(
           res.body.text,
-          "Tea time is usually around 4 or 4.30.\n"
+          "Tea time is usually around 4 or 4.30."
         );
         assert.strictEqual(
           res.body.translation,
-          'Tea time is usually around 4 or <span class="highlight">4:30</span>.\n'
+          'Tea time is usually around 4 or <span class="highlight">4:30</span>.'
         );
         done();
       });
@@ -99,7 +99,7 @@ suite("Functional Tests", () => {
       .request(server)
       .post("/api/translate")
       .send({
-        text: "Have you met Mrs Kalyani?\n",
+        text: "Have you met Mrs Kalyani?",
         locale: "american-to-british"
       })
       .end(function(err, res) {
@@ -107,7 +107,7 @@ suite("Functional Tests", () => {
         assert.isObject(res.body);
         assert.property(res.body, "text");
         assert.property(res.body, "translation");
-        assert.strictEqual(res.body.text, "Have you met Mrs Kalyani?\n");
+        assert.strictEqual(res.body.text, "Have you met Mrs Kalyani?");
         assert.strictEqual(
           res.body.translation,
           "Everything looks good to me!"

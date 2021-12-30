@@ -37,7 +37,9 @@ class Translator {
         this.changedWords.push(americanToBritishSpelling[tempWord]);
       } else if (americanToBritishTitles.hasOwnProperty(tempWord)) {
         const translatedWord = americanToBritishTitles[tempWord];
-        this.changedWords.push(translatedWord);
+        this.changedWords.push(
+          translatedWord[0].toUpperCase() + translatedWord.slice(1)
+        );
         wordArr[index] =
           translatedWord[0].toUpperCase() + translatedWord.slice(1);
       }
@@ -83,14 +85,16 @@ class Translator {
           key => americanToBritishSpelling[key] === tempword
         );
         wordArr[i] = translatedWord;
-        this.changedWords.push(word);
+        this.changedWords.push(translatedWord);
       }
       if (britishTitles.indexOf(word) !== -1) {
         const translatedWord = Object.keys(americanToBritishTitles).find(
           key => americanToBritishTitles[key] === tempword
         );
         wordArr[i] = translatedWord[0].toUpperCase() + translatedWord.slice(1);
-        this.changedWords.push(word);
+        this.changedWords.push(
+          translatedWord[0].toUpperCase() + translatedWord.slice(1)
+        );
       }
       if (timepatt.test(word)) {
         const translatedWord = word.replace(".", ":");
@@ -105,6 +109,7 @@ class Translator {
 
   highlightChange(str) {
     this.changedWords.forEach(word => {
+      console.log(word);
       const highlightWord = `<span class="highlight">${word}</span>`;
       str = str.replace(word, highlightWord);
     });
