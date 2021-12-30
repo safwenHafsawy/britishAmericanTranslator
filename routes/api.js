@@ -36,7 +36,6 @@ module.exports = function(app) {
     }
     //sending the response
     if (translation === text) translation = "Everything looks good to me!";
-    else translation += "\n";
     return res.json({text: text, translation});
   });
 };
